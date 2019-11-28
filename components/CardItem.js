@@ -19,11 +19,11 @@ export default class CardItem extends Component {
 				</View>
 	
 				<Text style={{ marginBottom: 10, marginTop: 10, marginLeft: 10 }}>
-					Xe BMW I8
-		  				</Text>
+				{this.props.item.XeID}
+				</Text>
 				<Text style={{ marginBottom: 10, fontWeight: 'bold', fontSize: 20, marginLeft: 10 }}>
-					4.000.000.000 đ
-		  				</Text>
+				{this.props.item.Tenxe}
+				</Text>
 				<View style={styles.content}>
 
 					<View style={styles.text}>
