@@ -13,7 +13,7 @@ import {
   TouchableOpacity, 
   KeyboardAvoidingView, } from 'react-native'
 
-export default class Register extends Component{
+export default class SignIn extends Component{
 	render(){
 		return(
       <SafeAreaView style={styles.container}>
@@ -23,11 +23,11 @@ export default class Register extends Component{
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <View style={styles.logoContainer}>
-            <Text style={styles.title}>Đăng ký</Text> 
+            <Text style={styles.title}>Rao bán xe HHH</Text> 
           </View>
           <View style={styles.infoContainer}>
             <TextInput style={styles.input} 
-            placeholder='Tên tài khoản'
+            placeholder='Tài khoản'
             placeholderTextColor='white'
             keyboardType='email-address'
             returnKeyType='next'
@@ -37,14 +37,6 @@ export default class Register extends Component{
             <TextInput style={styles.input} 
             placeholder='Mật khẩu'
             placeholderTextColor='white'
-            returnKeyType='next'
-            autoCorrect={false}
-            secureTextEntry={true}
-            ref={'txtPassword'}
-            />
-            <TextInput style={styles.input} 
-            placeholder='Xác nhận mật khẩu'
-            placeholderTextColor='white'
             returnKeyType='go'
             autoCorrect={false}
             secureTextEntry={true}
@@ -52,10 +44,14 @@ export default class Register extends Component{
             />
             <TouchableOpacity 
               style={styles.buttonContainer}
-              onPress={() => this.props.navigation.navigate('SignIn')}>
-              <Text style={styles.buttonText}>Đăng ký</Text>
+              onPress={() => this.props.navigation.navigate('HomePage')}>
+              <Text style={styles.buttonText}>Đăng Nhập</Text>
             </TouchableOpacity>
             
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Register')}>
+              <Text style={{color:'white',textDecorationLine: 'underline',}}>Chưa có tài khoản?</Text>
+            </TouchableOpacity>
           </View>
         </View>
         </TouchableWithoutFeedback>
