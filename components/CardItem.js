@@ -19,10 +19,10 @@ export default class CardItem extends Component {
 				</View>
 	
 				<Text style={{ marginBottom: 10, marginTop: 10, marginLeft: 10 }}>
-				{this.props.item.XeID}
+				{this.props.item.CarID}
 				</Text>
 				<Text style={{ marginBottom: 10, fontWeight: 'bold', fontSize: 20, marginLeft: 10 }}>
-				{this.props.item.Tenxe}
+				{this.props.item.Car_Name}
 				</Text>
 				<View style={styles.content}>
 

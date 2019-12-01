@@ -17,7 +17,7 @@ export default class Register extends Component{
 	render(){
 		return(
       <SafeAreaView style={styles.container}>
-      <ImageBackground style={{width: '100%',height: '100%'}} source={require('./images/screen-0.jpg')}>
+      <ImageBackground style={{width: '100%',height: '100%'}} source={require('../assets/images/screen-0.jpg')}>
       <StatusBar barStyle='light-content' />
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

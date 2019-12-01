@@ -3,7 +3,6 @@ import {
   StyleSheet, 
   Text, 
   View, 
-  Image,
   ImageBackground, 
   TouchableWithoutFeedback, 
   StatusBar, 
@@ -14,10 +13,42 @@ import {
   KeyboardAvoidingView, } from 'react-native'
 
 export default class SignIn extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      email:"",
+      pass:"",
+    }
+  }
+  LOGIN(){
+    fetch("https://huynguyen1401.000webhostapp.com/logintoken.php",{
+      "method":"POST",
+      headers:{
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        "EMAIL":this.state.email,
+        "PASSWORD":this.state.pass
+      })
+    })
+    .then((response)=>response.json())
+    .then((responseJson)=>{
+      if(responseJson.token !="ERROR"){
+          alert('Đăng nhập thành công');
+          this.props.navigation.navigate('HomeScreen');
+      }else{
+        alert('Tài khoản hoặc mật khẩu chưa đúng');
+      }
+    })
+    .catch((e) => {
+      alert(e)
+    });
+  }
 	render(){
 		return(
       <SafeAreaView style={styles.container}>
-      <ImageBackground style={{width: '100%',height: '100%'}} source={require('./images/screen-0.jpg')}>
+      <ImageBackground style={{width: '100%',height: '100%'}} source={require('../assets/images/screen-0.jpg')}>
       <StatusBar barStyle='light-content' />
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -33,6 +64,8 @@ export default class SignIn extends Component{
             returnKeyType='next'
             autoCorrect={false}
             onSubmitEditing={() => this.refs.txtPassword.focus()}
+            onChangeText={(email) => this.setState({email})}
+            value ={this.state.email}
             />
             <TextInput style={styles.input} 
             placeholder='Mật khẩu'
@@ -41,10 +74,12 @@ export default class SignIn extends Component{
             autoCorrect={false}
             secureTextEntry={true}
             ref={'txtPassword'}
+            onChangeText={(pass) => this.setState({pass})}
+            value ={this.state.pass}
             />
             <TouchableOpacity 
               style={styles.buttonContainer}
-              onPress={() => this.props.navigation.navigate('HomePage')}>
+              onPress={() => {this.LOGIN()}}>
               <Text style={styles.buttonText}>Đăng Nhập</Text>
             </TouchableOpacity>
             

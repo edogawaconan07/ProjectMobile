@@ -60,7 +60,7 @@ export default class App extends Component {
             );
           }}
           //FlatList phải có key. ở đây ta dùng trường ID làm key.
-          keyExtractor={({XeID}, index) => XeID}
+          keyExtractor={({CarID}, index) => CarID}
         >
         </FlatList>
       </View>

@@ -13,7 +13,7 @@ export default createAppContainer(
     Main: MainTabNavigator,
     Register: Register,
     SignIn:SignIn,
-    HomePage:HomeScreen,
+    HomeScreen:HomeScreen,
   },
   {
     initialRouteName: 'SignIn',
