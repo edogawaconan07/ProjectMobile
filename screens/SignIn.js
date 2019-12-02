@@ -36,7 +36,7 @@ export default class SignIn extends Component{
     .then((responseJson)=>{
       if(responseJson.token !="ERROR"){
           alert('Đăng nhập thành công');
-          this.props.navigation.navigate('HomeScreen');
+          this.props.navigation.navigate('Main');
       }else{
         alert('Tài khoản hoặc mật khẩu chưa đúng');
       }

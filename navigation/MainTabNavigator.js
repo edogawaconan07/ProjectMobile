@@ -5,6 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import AccountScreen from '../screens/AccountScreen';
+import PostScreen from '../screens/PostScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const config = Platform.select({
@@ -30,6 +31,25 @@ HomeStack.navigationOptions = {
 };
 
 HomeStack.path = '';
+
+const PostStack = createStackNavigator(
+  {
+    Post: PostScreen,
+  },
+  config
+);
+
+PostStack.navigationOptions = {
+  tabBarLabel: 'Đăng bài',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={'md-paper'}
+      />
+  ),
+};
+
+PostStack.path = '';
 
 const AccountStack = createStackNavigator(
   {
@@ -68,6 +88,7 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
+  PostStack,
   AccountStack,
   SettingsStack,
 });

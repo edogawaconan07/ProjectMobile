@@ -10,7 +10,7 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Constants from 'expo-constants';
 
-export default class AccountScreen extends Component{
+export default class PostScreen extends Component{
   render(){
   return (
     <SafeAreaView style={styles.container}>
@@ -22,7 +22,7 @@ export default class AccountScreen extends Component{
       </View>
         <View style={styles.item}>
         <Icon
-                name='account'
+                name='human-male'
                 size={16}
                 color='#1186fe'
         />
