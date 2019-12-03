@@ -55,6 +55,11 @@ export default class Register extends Component{
               <Text style={styles.buttonText}>Đăng ký</Text>
             </TouchableOpacity>
             
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('SignIn')}>
+              <Text style={{color:'white',textDecorationLine: 'underline',}}>Đã có tài khoản</Text>
+            </TouchableOpacity>
+
           </View>
         </View>
         </TouchableWithoutFeedback>

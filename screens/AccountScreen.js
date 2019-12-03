@@ -9,8 +9,47 @@ import {
 } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Constants from 'expo-constants';
+import {AsyncStorage} from 'react-native';
 
 export default class AccountScreen extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      myData_user: [],
+      ID : "",
+    }
+    this.retrieveData();
+  }
+  retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@ID:key');
+      if (value !== null) {
+        // We have data!!
+        this.setState({ID:value});
+        this.getdata();
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  }; 
+  getdata(){
+    fetch("https://huynguyen1401.000webhostapp.com/getdata_user.php",{
+      "method":"POST",
+      headers:{
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        "EMAIL":this.state.ID,
+      })
+    })
+    .then((response)=>response.json())
+    .then((responseJson)=>{
+      this.setState({
+        myData_user: responseJson,
+      });
+    })  
+  }
   render(){
   return (
     <SafeAreaView style={styles.container}>
@@ -27,7 +66,7 @@ export default class AccountScreen extends Component{
                 color='#1186fe'
         />
             <Text style={styles.name}>Họ tên</Text>
-            <Text style={styles.info}>Nguyễn Gia Huy</Text>
+            <Text style={styles.info}>{this.state.myData_user['FULL_NAME']}</Text>
         </View>
         <View style={styles.item}>
         <Icon
@@ -36,7 +75,7 @@ export default class AccountScreen extends Component{
                 color='#1186fe'
         />
             <Text style={styles.name}>Email</Text>
-            <Text style={styles.info}>abc@gmail.com</Text>
+            <Text style={styles.info}>{this.state.myData_user['EMAIL']}</Text>
         </View>
         <View style={styles.item}>
         <Icon
@@ -45,7 +84,7 @@ export default class AccountScreen extends Component{
                 color='#1186fe'
         />
             <Text style={styles.name}>Số điện thoại</Text>
-            <Text style={styles.info}>0909090909</Text>
+            <Text style={styles.info}>{this.state.myData_user['FIRST_PHONE']}</Text>
         </View>
         <View style={styles.item}>
         <Icon
@@ -54,7 +93,7 @@ export default class AccountScreen extends Component{
                 color='#1186fe'
         />
             <Text style={styles.name}>Địa chỉ</Text>
-            <Text style={styles.info}>Quận 9 TP HCM</Text>
+            <Text style={styles.info}>{this.state.myData_user['ADDRESS']}</Text>
         </View>
         <TouchableOpacity 
               style={{marginTop:20}}

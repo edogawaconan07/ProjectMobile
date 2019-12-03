@@ -11,6 +11,7 @@ import {
   Keyboard, 
   TouchableOpacity, 
   KeyboardAvoidingView, } from 'react-native'
+import {AsyncStorage} from 'react-native';
 
 export default class SignIn extends Component{
   constructor(props){
@@ -20,7 +21,14 @@ export default class SignIn extends Component{
       pass:"",
     }
   }
-  LOGIN(){
+  storeData = async () => {
+    try {
+      await AsyncStorage.setItem('@ID:key', this.state.email);
+    } catch (error) {
+      // Error saving data
+    }
+  };
+  LOGIN(){    
     fetch("https://huynguyen1401.000webhostapp.com/logintoken.php",{
       "method":"POST",
       headers:{
@@ -36,6 +44,7 @@ export default class SignIn extends Component{
     .then((responseJson)=>{
       if(responseJson.token !="ERROR"){
           alert('Đăng nhập thành công');
+          this.storeData();
           this.props.navigation.navigate('Main');
       }else{
         alert('Tài khoản hoặc mật khẩu chưa đúng');
