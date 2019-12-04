@@ -7,6 +7,7 @@ import SignIn from '../screens/SignIn';
 import HomeScreen from '../screens/HomeScreen';
 import AccoutScreen from '../screens/AccountScreen';
 import PostScreen from '../screens/PostScreen';
+import CarDetail from '../screens/CarDetail';
 
 export default createAppContainer(
   createSwitchNavigator({
@@ -17,9 +18,10 @@ export default createAppContainer(
     SignIn:SignIn,
     AccoutScreen:AccoutScreen,
     PostScreen:PostScreen,
+    CarDetail:CarDetail,
   },
   {
-    initialRouteName: 'SignIn',
+    initialRouteName: 'Main',
   }
   )
 );

@@ -56,7 +56,7 @@ export default class CardItem extends Component {
 				</View>
 			</View>
 
-		)
+		);
 	}
 }
 const styles = StyleSheet.create({

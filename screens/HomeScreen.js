@@ -4,7 +4,7 @@ import {
   StyleSheet, 
   Text, 
   View, 
-  FlatList } from 'react-native';
+  FlatList,TouchableOpacity } from 'react-native';
 import CardItem from '../components/CardItem'
 // class FlatListItem extends Component {
 //   render() {
@@ -48,15 +48,19 @@ export default class App extends Component {
   }
   render() {
     return (
+
       <View style={styles.container}>
+
         <FlatList
           data={this.state.myData}
           renderItem={({ item, index }) => {
             return (
               //Tạo 1 class mới tên FLatListItem có thể đặt tên khác. như trên dòng code 4.
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('CarDetail',{id:item.CarID})}>
               <CardItem item={item} index={index}>
 
               </CardItem>
+              </TouchableOpacity>
             );
           }}
           //FlatList phải có key. ở đây ta dùng trường ID làm key.

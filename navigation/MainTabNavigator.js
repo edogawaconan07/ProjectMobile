@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import AccountScreen from '../screens/AccountScreen';
 import PostScreen from '../screens/PostScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import CarDetail from '../screens/CarDetail';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -17,10 +18,14 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
   },
+  {
+    CarDetail: CarDetail,
+  },
   config
 );
 
 HomeStack.navigationOptions = {
+  title:'Trang chủ',
   tabBarLabel: 'Trang chủ',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
