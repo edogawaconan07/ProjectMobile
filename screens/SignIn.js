@@ -17,13 +17,13 @@ export default class SignIn extends Component{
   constructor(props){
     super(props);
     this.state={
-      email:"",
+      username:"",
       pass:"",
     }
   }
   storeData = async () => {
     try {
-      await AsyncStorage.setItem('@ID:key', this.state.email);
+      await AsyncStorage.setItem('@ID:key', this.state.username);
     } catch (error) {
       // Error saving data
     }
@@ -36,7 +36,7 @@ export default class SignIn extends Component{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        "EMAIL":this.state.email,
+        "USERID":this.state.username,
         "PASSWORD":this.state.pass
       })
     })
@@ -73,8 +73,8 @@ export default class SignIn extends Component{
             returnKeyType='next'
             autoCorrect={false}
             onSubmitEditing={() => this.refs.txtPassword.focus()}
-            onChangeText={(email) => this.setState({email})}
-            value ={this.state.email}
+            onChangeText={(username) => this.setState({username})}
+            value ={this.state.username}
             />
             <TextInput style={styles.input} 
             placeholder='Mật khẩu'

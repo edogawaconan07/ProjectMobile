@@ -40,7 +40,7 @@ export default class AccountScreen extends Component{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        "EMAIL":this.state.ID,
+        "USERID":this.state.ID,
       })
     })
     .then((response)=>response.json())
@@ -49,6 +49,9 @@ export default class AccountScreen extends Component{
         myData_user: responseJson,
       });
     })  
+  }
+  static navigationOptions ={
+    header:null,
   }
   render(){
   return (

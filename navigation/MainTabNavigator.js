@@ -18,9 +18,6 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
   },
-  {
-    CarDetail: CarDetail,
-  },
   config
 );
 

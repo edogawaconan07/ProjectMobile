@@ -46,6 +46,9 @@ export default class App extends Component {
     //Tạo hàm loadDataFromServer riêng tí còn dùng nữa khỏi viết lại
     this.loadDataFromServer();
   }
+  static navigationOptions ={
+    header:null,
+  };
   render() {
     return (
 

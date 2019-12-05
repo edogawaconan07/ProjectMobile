@@ -10,9 +10,35 @@ import {
 } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Constants from 'expo-constants';
-import {AsyncStorage} from 'react-native';
-
 export default class CarDetail extends Component{
+    constructor(props){
+      super(props);
+      this.state={
+        myData_car: [],
+        carid:this.props.navigation.state.params.id,
+      }
+    }
+    componentDidMount(){
+      this.getdata();
+    }
+    getdata(){
+      fetch("https://huynguyen1401.000webhostapp.com/getdatacar.php",{
+        "method":"POST",
+        headers:{
+          "Accept":"application/json",
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          "CARID":this.state.carid,
+        })
+      })
+      .then((response)=>response.json())
+      .then((responseJson)=>{
+        this.setState({
+          myData_car: responseJson,
+        });
+      })  
+    }
   render(){
   return (
     <ScrollView>
@@ -32,7 +58,7 @@ export default class CarDetail extends Component{
                 color='#efaa2b'
         />
             <Text style={styles.name}>Tên xe</Text>
-            <Text style={styles.info}>{this.props.navigation.state.params.id}</Text>
+            <Text style={styles.info}>{this.state.myData_car['CAR_NAME']}</Text>
         </View>
         <View style={styles.item}>
         <Icon
@@ -41,37 +67,10 @@ export default class CarDetail extends Component{
                 color='#efaa2b'
         />
             <Text style={styles.name}>Năm sản xuất</Text>
-            <Text style={styles.info}></Text>
-        </View>
-        <View style={styles.item}>
-        <Icon
-                name='alpha-s-circle-outline'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Tình trạng</Text>
-            <Text style={styles.info}></Text>
-        </View>
-        <View style={styles.item}>
-        <Icon
-                name='earth'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Xuất xứ</Text>
-            <Text style={styles.info}></Text>
+            <Text style={styles.info}>{this.state.myData_car['MODEL']}</Text>
         </View>
 
         <Text style={styles.title}>Thông tin chi tiết</Text>
-        <View style={styles.item}>
-        <Icon
-                name='car-door'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Số cửa</Text>
-            <Text style={styles.info}></Text>
-        </View>
         <View style={styles.item}>
         <Icon
                 name='seat-recline-normal'
@@ -79,25 +78,7 @@ export default class CarDetail extends Component{
                 color='#efaa2b'
         />
             <Text style={styles.name}>Số chỗ</Text>
-            <Text style={styles.info}></Text>
-        </View>
-        <View style={styles.item}>
-        <Icon
-                name='car-cruise-control'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Hộp số</Text>
-            <Text style={styles.info}></Text>
-        </View>
-        <View style={styles.item}>
-        <Icon
-                name='car-battery'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Nhiên liệu</Text>
-            <Text style={styles.info}></Text>
+            <Text style={styles.info}>{this.state.myData_car['NUM_OF_SEATS']}</Text>
         </View>
 
         <Text style={styles.title}>Thông tin người bán</Text>
@@ -108,7 +89,7 @@ export default class CarDetail extends Component{
                 color='#efaa2b'
         />
             <Text style={styles.name}>Tên người bán</Text>
-            <Text style={styles.info}></Text>
+            <Text style={styles.info}>{this.state.myData_car['FULL_NAME']}</Text>
         </View>
         <View style={styles.item}>
         <Icon
@@ -117,7 +98,7 @@ export default class CarDetail extends Component{
                 color='#efaa2b'
         />
             <Text style={styles.name}>Số điện thoại</Text>
-            <Text style={styles.info}></Text>
+            <Text style={styles.info}>{this.state.myData_car['FIRST_PHONE']}</Text>
         </View>
         <View style={styles.item}>
         <Icon
@@ -126,7 +107,7 @@ export default class CarDetail extends Component{
                 color='#efaa2b'
         />
             <Text style={styles.name}>Địa chỉ</Text>
-            <Text style={styles.info}></Text>
+            <Text style={styles.info}>{this.state.myData_car['ADDRESS']}</Text>
         </View>
         <Text>Mô tả</Text>
         <TouchableOpacity 

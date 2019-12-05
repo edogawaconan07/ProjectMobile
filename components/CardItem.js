@@ -19,7 +19,7 @@ export default class CardItem extends Component {
 				</View>
 	
 				<Text style={{ marginBottom: 10, marginTop: 10, marginLeft: 10 }}>
-				{this.props.item.CarID}
+				{this.props.item.CarPrice}đ
 				</Text>
 				<Text style={{ marginBottom: 10, fontWeight: 'bold', fontSize: 20, marginLeft: 10 }}>
 				{this.props.item.Car_Name}
