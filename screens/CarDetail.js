@@ -6,21 +6,31 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Button,
+  BackHandler,
 } from 'react-native';
+import Header from '../components/Header';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Constants from 'expo-constants';
+import { StackActions } from 'react-navigation';
+
+const popAction = StackActions.pop({
+  n: 1,
+});
+
 export default class CarDetail extends Component{
     constructor(props){
       super(props);
       this.state={
         myData_car: [],
         carid:this.props.navigation.state.params.id,
-      }
+      };
     }
     componentDidMount(){
       this.getdata();
     }
+
     getdata(){
       fetch("https://huynguyen1401.000webhostapp.com/getdatacar.php",{
         "method":"POST",
@@ -43,6 +53,16 @@ export default class CarDetail extends Component{
   return (
     <ScrollView>
     <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <Icon
+        name='car'
+        size={16}
+        color='black'
+        style={{marginTop:20}}
+        onPress={() => this.props.navigation.dispatch(popAction)}
+        />
+        <Header headerText={'Title App'}/>
+      </View>
       <View style={{backgroundColor:'#ffffff', height:200}}>
         <Image 
         style={{ height:200,alignSelf:'center',width:'100%'}}
@@ -115,6 +135,11 @@ export default class CarDetail extends Component{
               onPress={() => this.props.navigation.navigate('SignIn')}>
               <Text style={styles.buttonText}>Đặt mua</Text>
         </TouchableOpacity>
+
+        <View>
+          <Button onPress={() => this.props.navigation.dispatch(popAction)} title="Trở về chọn xe" />
+        </View>
+
     </SafeAreaView>
     </ScrollView>
   );
