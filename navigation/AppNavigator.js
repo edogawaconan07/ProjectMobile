@@ -10,6 +10,7 @@ import HomeScreen from '../screens/HomeScreen';
 import AccoutScreen from '../screens/AccountScreen';
 import PostScreen from '../screens/PostScreen';
 import CarDetail from '../screens/CarDetail';
+import UpdateAccountScreen from '../screens/UpdateAccountScreen';
 
 export default createAppContainer(
   createSwitchNavigator({
@@ -21,6 +22,7 @@ export default createAppContainer(
     AccoutScreen:AccoutScreen,
     PostScreen:PostScreen,
     CarDetail:CarDetail,
+    UpdateAccountScreen:UpdateAccountScreen,
   },
   {
     initialRouteName: 'Main',

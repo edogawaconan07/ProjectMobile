@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-
+//const popAction = StackActions.pop({
+  //n: 1,
+//});
 //make a Component
 const Header = (props) => {
   const { headerStyle, bgHeader } = styles;
@@ -14,7 +16,6 @@ const Header = (props) => {
 
 const styles = {
   bgHeader: {
-    backgroundColor: '#0288D1',
     justifyContent:'center',
     alignItems:'center',
     elevation: 10,
@@ -22,13 +23,14 @@ const styles = {
     shadowColor: '#00000',
     shadowOffset:{width: 0, height:10},
     shadowOpacity: 0.2,
-    position: 'relative'
+    position: 'relative',
+    flexDirection:'row',
   },
   headerStyle: {
     fontSize: 25,
     textAlign: 'center',
     margin: 10,
-    color: '#fff',
+    color: 'black',
   },
 };
 

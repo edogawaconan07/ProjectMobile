@@ -50,9 +50,16 @@ export default class AccountScreen extends Component{
       });
     })  
   }
-  static navigationOptions ={
-    header:null,
-  }
+  static navigationOptions = {
+    title: 'Thông tin tài khoản',
+    headerStyle: {
+      backgroundColor: '#2D6097',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
   render(){
   return (
     <SafeAreaView style={styles.container}>
@@ -100,7 +107,7 @@ export default class AccountScreen extends Component{
         </View>
         <TouchableOpacity 
               style={{marginTop:20}}
-              onPress={() => this.props.navigation.navigate('SignIn')}>
+              onPress={() => this.props.navigation.navigate('UpdateAccountScreen')}>
         <View style={styles.item}>
         <Icon
                 name='settings-outline'

@@ -46,8 +46,15 @@ export default class App extends Component {
     //Tạo hàm loadDataFromServer riêng tí còn dùng nữa khỏi viết lại
     this.loadDataFromServer();
   }
-  static navigationOptions ={
-    header:null,
+  static navigationOptions = {
+    title: 'Trang chủ',
+    headerStyle: {
+      backgroundColor: '#2D6097',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
   render() {
     return (

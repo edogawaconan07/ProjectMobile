@@ -15,11 +15,17 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Constants from 'expo-constants';
 import { StackActions } from 'react-navigation';
 
-const popAction = StackActions.pop({
-  n: 1,
-});
-
 export default class CarDetail extends Component{
+  static navigationOptions = {
+    title: 'Thông tin xe',
+    headerStyle: {
+      backgroundColor: '#2D6097',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
     constructor(props){
       super(props);
       this.state={
@@ -53,16 +59,6 @@ export default class CarDetail extends Component{
   return (
     <ScrollView>
     <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Icon
-        name='car'
-        size={16}
-        color='black'
-        style={{marginTop:20}}
-        onPress={() => this.props.navigation.dispatch(popAction)}
-        />
-        <Header headerText={'Title App'}/>
-      </View>
       <View style={{backgroundColor:'#ffffff', height:200}}>
         <Image 
         style={{ height:200,alignSelf:'center',width:'100%'}}
@@ -129,16 +125,12 @@ export default class CarDetail extends Component{
             <Text style={styles.name}>Địa chỉ</Text>
             <Text style={styles.info}>{this.state.myData_car['ADDRESS']}</Text>
         </View>
-        <Text>Mô tả</Text>
+        <Text style={styles.title}>Mô tả</Text>
         <TouchableOpacity 
               style={styles.buttonContainer}
               onPress={() => this.props.navigation.navigate('SignIn')}>
               <Text style={styles.buttonText}>Đặt mua</Text>
         </TouchableOpacity>
-
-        <View>
-          <Button onPress={() => this.props.navigation.dispatch(popAction)} title="Trở về chọn xe" />
-        </View>
 
     </SafeAreaView>
     </ScrollView>
@@ -150,6 +142,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:'#ffffff',
+  },
+  header:{
+    flexDirection:'row',
+    backgroundColor:'white',
   },
   item: {
     backgroundColor: '#ffffff',

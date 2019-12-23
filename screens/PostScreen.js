@@ -12,9 +12,6 @@ import Constants from 'expo-constants';
 import {AsyncStorage} from 'react-native';
 
 export default class PostScreen extends Component{
-  static navigationOptions ={
-    header:null,
-  }
   constructor(props){
     super(props);
     this.state={
@@ -65,10 +62,21 @@ export default class PostScreen extends Component{
       alert(e)
     });
 }
+static navigationOptions = {
+  title: 'Bài đăng',
+  headerStyle: {
+    backgroundColor: '#2D6097',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
   render(){
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.form}>
+        <Text style={{fontWeight:"bold",fontSize:20, textAlign:'center'}}>ĐĂNG BÁN</Text>
         <TextInput style={styles.textInput}
         onChangeText={(name)=>this.setState({name})}
         value={this.state.name}
@@ -135,6 +143,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',		
     width:300,
     height:30,
+    borderBottomWidth:0.8,
+    borderBottomColor:'#9ed4eb',
+    marginTop:5,
+    marginBottom:10,
+    padding: 5,
   },
 	buttonContainer:{
 		marginTop:20,
