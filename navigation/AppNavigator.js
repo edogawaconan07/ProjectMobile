@@ -7,7 +7,7 @@ import MainTabNavigator from './MainTabNavigator';
 import Register from '../screens/Register';
 import SignIn from '../screens/SignIn';
 import HomeScreen from '../screens/HomeScreen';
-import AccoutScreen from '../screens/AccountScreen';
+import AccountScreen from '../screens/AccountScreen';
 import PostScreen from '../screens/PostScreen';
 import CarDetail from '../screens/CarDetail';
 import UpdateAccountScreen from '../screens/UpdateAccountScreen';
@@ -19,13 +19,13 @@ export default createAppContainer(
     Main: MainTabNavigator,
     Register: Register,
     SignIn:SignIn,
-    AccoutScreen:AccoutScreen,
+    AccountScreen:AccountScreen,
     PostScreen:PostScreen,
     CarDetail:CarDetail,
     UpdateAccountScreen:UpdateAccountScreen,
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: 'SignIn',
   }
   )
 );

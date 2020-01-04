@@ -32,6 +32,15 @@ export default class AccountScreen extends Component{
       // Error retrieving data
     }
   }; 
+  removeData = async() =>{
+    try{
+      await AsyncStorage.removeItem('@ID:key');
+      this.props.navigation.navigate('SignIn');
+    }
+    catch(error){
+      //Error remove
+    }
+  }
   getdata(){
     fetch("https://huynguyen1401.000webhostapp.com/getdata_user.php",{
       "method":"POST",
@@ -118,7 +127,7 @@ export default class AccountScreen extends Component{
         </View>
         </TouchableOpacity>
         <TouchableOpacity 
-              onPress={() => this.props.navigation.navigate('SignIn')}>
+              onPress={() => this.removeData()}>
         <View style={styles.item}>
         <Icon
                 name='logout-variant'

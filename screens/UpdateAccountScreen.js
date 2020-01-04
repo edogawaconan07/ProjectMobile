@@ -14,7 +14,6 @@ export default class ImagePickerExample extends React.Component {
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>{this.state.ID}</Text>     
         {image &&
           <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}   
         <TouchableOpacity 
@@ -69,7 +68,6 @@ export default class ImagePickerExample extends React.Component {
 
     let formData = new FormData();
     formData.append('image', {
-      //USERID:this.state.ID,
       uri: this.state.imageURI,
       name: this.state.ID,
       type: `image/${fileType}`,
