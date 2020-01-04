@@ -1,66 +1,29 @@
 import * as React from 'react';
-import { Button, Image, View,Text } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
 export default class ImagePickerExample extends React.Component {
-  constructor(props){
-    super(props);
-    this.state={
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXblSHIfV8-qrqQioNdk5nSUFZfvYRBU3BoTdiT3316F_74O8K&s',
-      ID : "",
-    }
-    this.retrieveData();
-  }
+  state = {
+    ID:this.props.navigation.state.params.id,
+    image:this.props.navigation.state.params.key,
+  };
   render() {
     let { image } = this.state;
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>{this.state.ID}</Text>
-      {image &&
-      <Image 
-      style={{borderRadius:50, width:80, height:80,marginTop:20, alignSelf:'center'}}
-      source={{ uri: image }} 
-      />}
-        <Button
-          title="Pick an image from camera roll"
-          onPress={this._pickImage}
-        />
+      <Text>{this.state.ID}</Text>     
+        {image &&
+          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}   
+        <TouchableOpacity 
+              onPress={this._pickImage}
+              style={styles.buttonContainer}>
+              <Text style={styles.buttonText}>Chọn ảnh đại diện</Text>
+        </TouchableOpacity>        
       </View>
     );
-  }
-  retrieveData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('@ID:key');
-      if (value !== null) {
-        // We have data!!
-        this.setState({ID:value});
-        this.getdata();
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-  }; 
-
-  getdata(){
-    fetch("https://huynguyen1401.000webhostapp.com/getdata_user.php",{
-      "method":"POST",
-      headers:{
-        "Accept":"application/json",
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        "USERID":this.state.ID,
-      })
-    })
-    .then((response)=>response.json())
-    .then((responseJson)=>{
-      this.setState({
-        myData_user: responseJson,
-      });
-    })  
   }
 
   componentDidMount() {
@@ -86,9 +49,53 @@ export default class ImagePickerExample extends React.Component {
     });
 
     console.log(result);
-
+    //this.uploadBackground(result.uri);
+    this.uploadBackground(result.uri);
+    
     if (!result.cancelled) {
       this.setState({ image: result.uri });
     }
   };
+  uploadBackground= async (uri) => {
+    let apiUrl = 'https://huynguyen1401.000webhostapp.com/UserImage.php';
+  
+    let uriParts = uri.split('.');
+    let fileType = uriParts[uriParts.length - 1];
+
+    this.setState(
+      {
+      imageURI:uri
+    });
+
+    let formData = new FormData();
+    formData.append('image', {
+      //USERID:this.state.ID,
+      uri: this.state.imageURI,
+      name: this.state.ID,
+      type: `image/${fileType}`,
+    });
+  
+    let options = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      
+    };
+    return fetch(apiUrl, options);
+  }
 }
+const styles = StyleSheet.create({
+	buttonContainer:{
+		marginTop:20,
+		paddingVertical: 15,
+		backgroundColor:'rgba(86,222,117,0.9)',
+	},
+	buttonText:{
+		textAlign:'center',
+		color: 'white',
+		fontSize: 15,
+		fontWeight: 'bold',
+	},
+});

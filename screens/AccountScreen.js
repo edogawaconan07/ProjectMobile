@@ -66,7 +66,7 @@ export default class AccountScreen extends Component{
       <View style={{backgroundColor:'#ffffff', height:120,marginBottom:20}}>
         <Image 
         style={{borderRadius:50, width:80, height:80,marginTop:20, alignSelf:'center'}}
-        source={require('../assets/images/avata.jpg')}
+        source={{uri:this.state.myData_user['FACEBOOK_ACCOUNT']}}
         />
       </View>
         <View style={styles.item}>
@@ -107,7 +107,7 @@ export default class AccountScreen extends Component{
         </View>
         <TouchableOpacity 
               style={{marginTop:20}}
-              onPress={() => this.props.navigation.navigate('UpdateAccountScreen')}>
+              onPress={() => this.props.navigation.navigate('UpdateAccountScreen',{id:this.state.ID},{key:this.state.myData_user['FACEBOOK_ACCOUNT']})}>
         <View style={styles.item}>
         <Icon
                 name='settings-outline'
