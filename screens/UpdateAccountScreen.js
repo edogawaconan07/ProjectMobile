@@ -103,13 +103,15 @@ export default class ImagePickerExample extends React.Component {
 const styles = StyleSheet.create({
 	buttonContainer:{
 		marginTop:20,
-		paddingVertical: 15,
-		backgroundColor:'rgba(86,222,117,0.9)',
+    paddingVertical: 15,
+    borderRadius:15,
+		backgroundColor:'#663366',
 	},
 	buttonText:{
 		textAlign:'center',
 		color: 'white',
-		fontSize: 15,
+    fontSize: 15,
+    padding:7,
 		fontWeight: 'bold',
 	},
 });

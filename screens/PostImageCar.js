@@ -24,12 +24,13 @@ export default class PostImageCar extends React.Component {
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{fontWeight:'bold', fontSize:20, color:'#3399CC'}}>Ảnh mẫu</Text>
         {image &&
-          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}   
+          <Image source={{ uri: image }} style={{ resizeMode:'contain',height:250,width:250 }} />}   
         <TouchableOpacity 
               onPress={this._pickImage}
               style={styles.buttonContainer}>
-              <Text style={styles.buttonText}>Chọn ảnh đại diện</Text>
+              <Text style={styles.buttonText}>Chọn ảnh cho xe</Text>
         </TouchableOpacity>        
       </View>
     );
@@ -105,12 +106,14 @@ const styles = StyleSheet.create({
 	buttonContainer:{
 		marginTop:20,
 		paddingVertical: 15,
-		backgroundColor:'rgba(86,222,117,0.9)',
+        backgroundColor:'#006699',
+        borderRadius:15,
 	},
 	buttonText:{
 		textAlign:'center',
 		color: 'white',
-		fontSize: 15,
+        fontSize: 15,
+        padding:7,
 		fontWeight: 'bold',
 	},
 });

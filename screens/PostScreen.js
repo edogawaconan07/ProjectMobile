@@ -32,14 +32,12 @@ export default class PostScreen extends Component{
       year:"",
       price:"",
       ID : "",
-      string:"SDUSDSDUUSDSDJSDSDJSDJSDJ",
-      image: '',
-      //this.props.navigation.state.params.link,
+      image: this.props.navigation.state.params.link,
     }
     this.retrieveData();
   }
-  componentDidMount(){
-    this.state.string = document.write("Chuỗi cần lấy là: " + string.slice(1, 4));
+  componentDidMount = async () =>{
+    console.log(this.state.image.replace('file:///data/data/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAwesomeProject-a44156e4-56ab-41b3-a2e5-6d532cec7a1d/ImagePicker/', ''));
   }
   retrieveData = async () => {
     try {
@@ -48,7 +46,6 @@ export default class PostScreen extends Component{
         // We have data!!
         this.setState({ID:value});
         console.log('HAHAHA');
-        console.log(string);
       }
     } catch (error) {
       // Error retrieving data
@@ -69,12 +66,19 @@ export default class PostScreen extends Component{
       "MODEL":this.state.year,
       "PRICE":this.state.price,
       "USERID":this.state.ID,
-      "IMAGE":this.state.image,
+      "IMAGE":this.state.image.replace('file:///data/data/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAwesomeProject-a44156e4-56ab-41b3-a2e5-6d532cec7a1d/ImagePicker/', ''),
     })
   })
     .then((response)=>response.json())
     .then((responseJson)=>{
       console.log(responseJson);
+      if(responseJson !='ERROR'){
+      this.props.navigation.navigate('Loading');
+      alert('Bạn vừa đăng tin thành công');
+      }
+      else{
+        alert('Không được để trống giá trị');
+      }
     })
     .catch((e) => {
       alert(e)
@@ -102,30 +106,35 @@ static navigationOptions = {
         placeholder='Tên xe'>
         </TextInput>
         <TextInput style={styles.textInput}
+        autoCompleteType='email'
         onChangeText={(status)=>this.setState({status})}
         value={this.state.status}
         keyboardType='email-address'
         placeholder='Tình trạng'>
         </TextInput>
         <TextInput style={styles.textInput}
+        autoCompleteType='street-address'
         onChangeText={(country)=>this.setState({country})}
         value={this.state.country}
         keyboardType='email-address'
         placeholder='Xuất xứ'>
         </TextInput>
         <TextInput style={styles.textInput}
+        autoCompleteType='cc-number'
         onChangeText={(seat)=>this.setState({seat})}
         value={this.state.seat}
         keyboardType='number-pad'
         placeholder='Số chỗ'>
         </TextInput>
         <TextInput style={styles.textInput}
+        autoCompleteType='cc-exp'
         onChangeText={(year)=>this.setState({year})}
         value={this.state.year}
         keyboardType='number-pad'
         placeholder='Năm sản xuất'>
         </TextInput>
         <TextInput style={styles.textInput}
+        autoCompleteType='cc-number'
         onChangeText={(price)=>this.setState({price})}
         value={this.state.price}
         keyboardType='number-pad'

@@ -26,8 +26,8 @@ export default class Loading extends Component{
     }
 	render(){
 		return(
-            <View style={StyleSheet.container}>
-                <Text>Loading...</Text>
+            <View style={styles.container}>
+                <Text>Đang loading đừng hối...</Text>
                 <ActivityIndicator size="large" color="0061AC"></ActivityIndicator>
             </View>
 		)

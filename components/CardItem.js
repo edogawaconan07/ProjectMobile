@@ -12,18 +12,18 @@ export default class CardItem extends Component {
 			<View style={styles.info}>
 				<View style={styles.image}>
 				<Image
-
-						style={{ borderRadius: 15, width: '100%', height: '100%' }}
-						source={require('../assets/images/car1.jpg')}
+						style={{ borderRadius: 15, resizeMode:'stretch',height:'100%',width:screenWidth-20 }}
+						source={{uri:this.props.item.CarImage}}
 					/>
 				</View>
 	
-				<Text style={{ marginBottom: 10, marginTop: 10, marginLeft: 10 }}>
-				{this.props.item.CarPrice}đ
+				<Text style={{ marginBottom: 10, marginTop: 10, marginLeft: 10,fontWeight:'bold',color:'#2E8B57' }}>
+				{this.props.item.CarPrice} VNĐ
 				</Text>
-				<Text style={{ marginBottom: 10, fontWeight: 'bold', fontSize: 20, marginLeft: 10 }}>
+				<Text style={{ marginBottom: 10, fontWeight: 'bold', fontSize: 14, marginLeft: 10 }}>
 				{this.props.item.Car_Name}
 				</Text>
+
 				<View style={styles.content}>
 
 					<View style={styles.text}>
@@ -32,7 +32,7 @@ export default class CardItem extends Component {
 							size={20}
 							color='#FF9900'
 						/>
-						<Text style={{ marginLeft: 8 }}>Mới</Text>
+						<Text style={{ marginLeft: 8 }}>{this.props.item.CarStatus}</Text>
 					</View>
 
 					<View style={styles.text}>
@@ -41,7 +41,7 @@ export default class CardItem extends Component {
 							size={20}
 							color='#0066CC'
 						/>
-						<Text style={{ marginLeft: 8 }}>4 chỗ</Text>
+						<Text style={{ marginLeft: 8 }}>{this.props.item.CarSeat}</Text>
 					</View>
 
 					<View style={styles.text}>
@@ -50,7 +50,7 @@ export default class CardItem extends Component {
 							size={20}
 							color='#993333'
 						/>
-						<Text>Hồ Chí Minh</Text>
+						<Text>{this.props.item.CarLocation}</Text>
 					</View>
 
 				</View>
@@ -63,12 +63,10 @@ const styles = StyleSheet.create({
 	info: {
 		flex: 1,
 		flexDirection: 'column',
-		height: 350,
+		height: 320,
 		backgroundColor: "#FFFFFF",
 		marginTop: 5,
 		marginBottom: 20,
-		marginLeft: 20,
-		marginRight: 20,
 		borderWidth: 0,
 		borderColor: '#ddd',
 		borderBottomWidth: 1,
@@ -79,15 +77,14 @@ const styles = StyleSheet.create({
 		elevation: 2,
 		borderRadius: 15,
 		//paddingBottom: 1,
-		paddingTop: 2,
 		elevation: 2,
 	},
 	image: {
-		flex:0.9,
+		flex:0.8,
 		//height:'60%'
 	},
 	content: {
-		flex:0.1,
+		//flex:0.1,
 		flexDirection: 'row',
 	},
 	text: {

@@ -129,11 +129,11 @@ export default class AccountScreen extends Component{
               onPress={() => this.props.navigation.navigate('UpdateAccountScreen',{id:this.state.ID},{key:this.state.myData_user['FACEBOOK_ACCOUNT']})}>
         <View style={styles.item}>
         <Icon
-                name='settings-outline'
+                name='cloud-upload-outline'
                 size={16}
                 color='#35bb7f'
         />
-              <Text style={{marginLeft:10}}>Cập nhật tài khoản</Text>
+              <Text style={{marginLeft:10}}>Cập nhật ảnh đại diện</Text>
         </View>
         </TouchableOpacity>
         <TouchableOpacity >

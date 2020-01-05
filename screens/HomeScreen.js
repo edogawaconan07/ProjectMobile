@@ -67,7 +67,7 @@ export default class App extends Component {
             return (
               //Tạo 1 class mới tên FLatListItem có thể đặt tên khác. như trên dòng code 4.
               <TouchableOpacity onPress={() => this.props.navigation.navigate('CarDetail',{id:item.CarID})}>
-              <CardItem item={item} index={index}>
+              <CardItem item={item} index={index} >
 
               </CardItem>
               </TouchableOpacity>

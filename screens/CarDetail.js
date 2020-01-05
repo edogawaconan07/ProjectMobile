@@ -62,7 +62,7 @@ export default class CarDetail extends Component{
       <View style={{backgroundColor:'#ffffff', height:200}}>
         <Image 
         style={{ height:200,alignSelf:'center',width:'100%'}}
-        source={require('../assets/images/car2.jpg')}
+        source={{uri: this.state.myData_car['DETAILED_DESCRIPTION']}}
         />
       </View>
 
