@@ -5,10 +5,21 @@ import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
 export default class ImagePickerExample extends React.Component {
+  static navigationOptions = {
+    title: 'Thay ảnh Avartar',
+    headerStyle: {
+      backgroundColor: '#2D6097',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
   state = {
     ID:this.props.navigation.state.params.id,
     image:this.props.navigation.state.params.key,
   };
+  
   render() {
     let { image } = this.state;
 
@@ -46,7 +57,6 @@ export default class ImagePickerExample extends React.Component {
       aspect: [4, 3],
       quality: 1
     });
-
     console.log(result);
     //this.uploadBackground(result.uri);
     this.uploadBackground(result.uri);
@@ -57,22 +67,28 @@ export default class ImagePickerExample extends React.Component {
   };
   uploadBackground= async (uri) => {
     let apiUrl = 'https://huynguyen1401.000webhostapp.com/UserImage.php';
-  
+    
+    let formData = new FormData();
+
     let uriParts = uri.split('.');
     let fileType = uriParts[uriParts.length - 1];
 
     this.setState(
       {
-      imageURI:uri
+      imageURI:uri,
     });
-
-    let formData = new FormData();
-    formData.append('image', {
+    console.log(this.state.imageURI)
+    formData.append('ID', {
       uri: this.state.imageURI,
-      name: this.state.ID,
+      name:this.state.ID,
       type: `image/${fileType}`,
     });
-  
+    formData.append('image', {
+      uri: this.state.imageURI,
+      name: this.state.imageURI,
+      type: `image/${fileType}`,
+    });
+    console.log(formData)
     let options = {
       method: 'POST',
       body: formData,
@@ -82,7 +98,7 @@ export default class ImagePickerExample extends React.Component {
       
     };
     return fetch(apiUrl, options);
-  }
+    }
 }
 const styles = StyleSheet.create({
 	buttonContainer:{

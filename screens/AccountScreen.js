@@ -18,7 +18,14 @@ export default class AccountScreen extends Component{
       myData_user: [],
       ID : "",
     }
-    this.retrieveData();
+    
+  }
+  componentDidMount = async () =>{
+  
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+      this.retrieveData();
+      console.log('hi')
+    })
   }
   retrieveData = async () => {
     try {
@@ -34,12 +41,13 @@ export default class AccountScreen extends Component{
   }; 
   removeData = async() =>{
     try{
-      await AsyncStorage.removeItem('@ID:key');
+      await AsyncStorage.clear();
       this.props.navigation.navigate('SignIn');
     }
     catch(error){
       //Error remove
     }
+    
   }
   getdata(){
     fetch("https://huynguyen1401.000webhostapp.com/getdata_user.php",{
@@ -57,7 +65,9 @@ export default class AccountScreen extends Component{
       this.setState({
         myData_user: responseJson,
       });
-    })  
+      console.log(this.state.myData_user['FACEBOOK_ACCOUNT']);
+    })
+    
   }
   static navigationOptions = {
     title: 'Thông tin tài khoản',
