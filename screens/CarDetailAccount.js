@@ -16,7 +16,7 @@ import Constants from 'expo-constants';
 import { StackActions } from 'react-navigation';
 import {AsyncStorage} from 'react-native';
 
-export default class CarDetail extends Component{
+export default class CarDetailAccount extends Component{
   static navigationOptions = {
     title: 'Thông tin xe',
     headerStyle: {
@@ -69,85 +69,29 @@ export default class CarDetail extends Component{
         });
       })
     }
-    Data(){
-        if (this.state.ID == this.state.myData_car['USERID']) {
-          // We have data!!
-          return(
+
+    Delete(){
+        fetch("https://huynguyen1401.000webhostapp.com/deletecar.php",{
+          "method":"POST",
+          headers:{
+            "Accept":"application/json",
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            "CARID":this.state.carid,
+          })
+        })
+        .then((response)=>response.json())
+        .then((responseJson)=>{
+            alert(responseJson);
+            this.props.navigation.navigate('Loading');
+        })
+      }    
+
+  render(){
+    return (
+    <ScrollView>
             <SafeAreaView style={styles.container}>
-      <View style={{backgroundColor:'#ffffff', height:200}}>
-        <Image 
-        style={{ height:200,alignSelf:'center',width:'100%'}}
-        source={{uri: this.state.myData_car['DETAILED_DESCRIPTION']}}
-        />
-      </View>
-
-      <Text style={styles.title}>Thông tin xe</Text>
-        <View style={styles.item}>
-        <Icon
-                name='car-sports'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Tên xe</Text>
-            <Text style={styles.info}>{this.state.myData_car['CAR_NAME']}</Text>
-        </View>
-        <View style={styles.item}>
-        <Icon
-                name='calendar'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Năm sản xuất</Text>
-            <Text style={styles.info}>{this.state.myData_car['MODEL']}</Text>
-        </View>
-
-        <Text style={styles.title}>Thông tin chi tiết</Text>
-        <View style={styles.item}>
-        <Icon
-                name='seat-recline-normal'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Số chỗ</Text>
-            <Text style={styles.info}>{this.state.myData_car['NUM_OF_SEATS']}</Text>
-        </View>
-
-        <Text style={styles.title}>Thông tin người bán</Text>
-        <View style={styles.item}>
-        <Icon
-                name='account'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Tên người bán</Text>
-            <Text style={styles.info}>{this.state.myData_car['FULL_NAME']}</Text>
-        </View>
-        <View style={styles.item}>
-        <Icon
-                name='phone'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Số điện thoại</Text>
-            <Text style={styles.info}>{this.state.myData_car['FIRST_PHONE']}</Text>
-        </View>
-        <View style={styles.item}>
-        <Icon
-                name='map-marker-outline'
-                size={16}
-                color='#efaa2b'
-        />
-            <Text style={styles.name}>Địa chỉ</Text>
-            <Text style={styles.info}>{this.state.myData_car['ADDRESS']}</Text>
-        </View>
-        <Text style={styles.title}>Mô tả</Text>
-
-    </SafeAreaView>
-          )
-        }
-        else{
-          return(
-          <SafeAreaView style={styles.container}>
       <View style={{backgroundColor:'#ffffff', height:200}}>
         <Image 
         style={{ height:200,alignSelf:'center',width:'100%'}}
@@ -217,19 +161,10 @@ export default class CarDetail extends Component{
         <Text style={styles.title}>Mô tả</Text>
         <TouchableOpacity 
               style={styles.buttonContainer}
-              onPress={() => this.props.navigation.navigate('SignIn')}>
-              <Text style={styles.buttonText}>Đặt mua</Text>
+              onPress={() => this.Delete()}>
+              <Text style={styles.buttonText}>Xóa</Text>
         </TouchableOpacity>
-
     </SafeAreaView>
-          )
-        }
-    };
-  render(){
-    //để 
-    return (
-    <ScrollView>
-    {this.Data()}
     </ScrollView>
   );
 }
@@ -266,7 +201,7 @@ const styles = StyleSheet.create({
   buttonContainer:{
     marginTop:7,
     paddingVertical: 10,
-    backgroundColor:'rgba(206,142,27,0.8)',
+    backgroundColor:'rgba(222,71,71,0.8)',
   },
   buttonText:{
     textAlign:'center',

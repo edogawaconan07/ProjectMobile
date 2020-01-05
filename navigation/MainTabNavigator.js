@@ -12,6 +12,11 @@ import SettingsScreen from '../screens/SettingsScreen';
 import CarDetail from '../screens/CarDetail';
 import UpdateAccountScreen from '../screens/UpdateAccountScreen';
 import PostImageCar from '../screens/PostImageCar';
+import AccountCarScreen from '../screens/AccountCarSreen';
+import CarDetailAccount from '../screens/CarDetailAccount';
+import UpdateTaiKhoan from '../screens/UpdateTaiKhoan';
+import CarDetailLike from '../screens/CarDetailLike';
+
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -63,6 +68,9 @@ const AccountStack = createStackNavigator(
   {
     Account: AccountScreen,
     UpdateAccountScreen: UpdateAccountScreen,
+    AccountCarScreen:AccountCarScreen,
+    CarDetailAccount: CarDetailAccount,
+    UpdateTaiKhoan:UpdateTaiKhoan,
   },
   config
 );
@@ -79,27 +87,31 @@ AccountStack.navigationOptions = {
 
 AccountStack.path = '';
 
-/*const SettingsStack = createStackNavigator(
+const SettingsStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    SettingsScreen: SettingsScreen,
+    CarDetailLike:CarDetailLike,
   },
   config
 );
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+  tabBarLabel: 'Yêu thích',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon 
+    focused={focused} 
+    name={'md-person'} 
+    />
   ),
 };
 
-SettingsStack.path = '';*/
+SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   PostStack,
   AccountStack,
-  //SettingsStack,
+  SettingsStack,
 });
 
 tabNavigator.path = '';

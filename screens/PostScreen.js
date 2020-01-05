@@ -77,7 +77,7 @@ export default class PostScreen extends Component{
       alert('Bạn vừa đăng tin thành công');
       }
       else{
-        alert('Không được để trống giá trị');
+        alert('Giá trị chưa phù hơp');
       }
     })
     .catch((e) => {

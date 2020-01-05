@@ -13,6 +13,12 @@ import CarDetail from '../screens/CarDetail';
 import UpdateAccountScreen from '../screens/UpdateAccountScreen';
 import Loading from '../screens/Loading';
 import PostImageCar from '../screens/PostImageCar';
+import AccountCarScreen from '../screens/AccountCarSreen';
+import CarDetailAccount from '../screens/CarDetailAccount';
+import UpdateTaiKhoan from '../screens/UpdateTaiKhoan';
+import CarDetailLike from '../screens/CarDetailLike';
+import SettingsScreen from '../screens/SettingsScreen';
+
 
 export default createAppContainer(
   createSwitchNavigator({
@@ -27,6 +33,11 @@ export default createAppContainer(
     UpdateAccountScreen:UpdateAccountScreen,
     Loading:Loading,
     PostImageCar:PostImageCar,
+    AccountCarScreen:AccountCarScreen,
+    CarDetailAccount:CarDetailAccount,
+    UpdateTaiKhoan:UpdateTaiKhoan,   
+    CarDetailLike:CarDetailLike, 
+    SettingsScreen:SettingsScreen,
   },
   {
     initialRouteName: 'Loading',

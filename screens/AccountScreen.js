@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Constants from 'expo-constants';
@@ -81,6 +82,7 @@ export default class AccountScreen extends Component{
   };
   render(){
   return (
+    <ScrollView>
     <SafeAreaView style={styles.container}>
       <View style={{backgroundColor:'#ffffff', height:120,marginBottom:20}}>
         <Image 
@@ -136,14 +138,26 @@ export default class AccountScreen extends Component{
               <Text style={{marginLeft:10}}>Cập nhật ảnh đại diện</Text>
         </View>
         </TouchableOpacity>
-        <TouchableOpacity >
+        <TouchableOpacity               
+        onPress={() => this.props.navigation.navigate('UpdateTaiKhoan')}>
         <View style={styles.item}>
         <Icon
-                name='logout-variant'
+                name='account-card-details'
                 size={16}
-                color='#f33659'
+                color='#825ec3'
         />
-              <Text style={{marginLeft:10}}>Trang update của mày nè Sẹo</Text>
+              <Text style={{marginLeft:10}}>Cập nhật thông tin tài khoản</Text>
+        </View>
+        </TouchableOpacity>
+        <TouchableOpacity 
+        onPress={() => this.props.navigation.navigate('AccountCarScreen',{id:this.state.ID})}>                      
+        <View style={styles.item}>
+        <Icon
+                name='car-sports'
+                size={16}
+                color='#efaa2b'
+        />
+              <Text style={{marginLeft:10}}>Các xe đã đăng</Text>
         </View>
         </TouchableOpacity>
         <TouchableOpacity 
@@ -158,6 +172,7 @@ export default class AccountScreen extends Component{
         </View>
         </TouchableOpacity>
     </SafeAreaView>
+    </ScrollView>
   );
 }
 }
