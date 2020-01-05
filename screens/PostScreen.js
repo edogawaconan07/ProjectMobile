@@ -12,6 +12,16 @@ import Constants from 'expo-constants';
 import {AsyncStorage} from 'react-native';
 
 export default class PostScreen extends Component{
+  static navigationOptions = {
+    title: 'Nhập thông tin',
+    headerStyle: {
+      backgroundColor: '#2D6097',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
   constructor(props){
     super(props);
     this.state={
@@ -21,7 +31,10 @@ export default class PostScreen extends Component{
       seat:"",
       year:"",
       price:"",
-      ID : ""
+      ID : "",
+      string:"SDUSDSDUUSDSDJSDSDJSDJSDJ",
+      image: '',
+      //this.props.navigation.state.params.link,
     }
     this.retrieveData();
   }
@@ -31,7 +44,8 @@ export default class PostScreen extends Component{
       if (value !== null) {
         // We have data!!
         this.setState({ID:value});
-        this.getdata();
+        console.log('HAHAHA');
+        console.log(document.write("Chuỗi cần lấy là: " + string.slice(1, 4)));
       }
     } catch (error) {
       // Error retrieving data
@@ -52,11 +66,12 @@ export default class PostScreen extends Component{
       "MODEL":this.state.year,
       "PRICE":this.state.price,
       "USERID":this.state.ID,
+      "IMAGE":this.state.image,
     })
   })
     .then((response)=>response.json())
     .then((responseJson)=>{
-      alert(responseJson);
+      console.log(responseJson);
     })
     .catch((e) => {
       alert(e)

@@ -12,6 +12,7 @@ import PostScreen from '../screens/PostScreen';
 import CarDetail from '../screens/CarDetail';
 import UpdateAccountScreen from '../screens/UpdateAccountScreen';
 import Loading from '../screens/Loading';
+import PostImageCar from '../screens/PostImageCar';
 
 export default createAppContainer(
   createSwitchNavigator({
@@ -24,8 +25,8 @@ export default createAppContainer(
     PostScreen:PostScreen,
     CarDetail:CarDetail,
     UpdateAccountScreen:UpdateAccountScreen,
-    Loading:Loading
-
+    Loading:Loading,
+    PostImageCar:PostImageCar,
   },
   {
     initialRouteName: 'Loading',

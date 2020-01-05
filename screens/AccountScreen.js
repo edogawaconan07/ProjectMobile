@@ -136,6 +136,16 @@ export default class AccountScreen extends Component{
               <Text style={{marginLeft:10}}>Cập nhật tài khoản</Text>
         </View>
         </TouchableOpacity>
+        <TouchableOpacity >
+        <View style={styles.item}>
+        <Icon
+                name='logout-variant'
+                size={16}
+                color='#f33659'
+        />
+              <Text style={{marginLeft:10}}>Trang update của mày nè Sẹo</Text>
+        </View>
+        </TouchableOpacity>
         <TouchableOpacity 
               onPress={() => this.removeData()}>
         <View style={styles.item}>

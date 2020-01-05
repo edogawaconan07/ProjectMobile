@@ -11,6 +11,7 @@ import PostScreen from '../screens/PostScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import CarDetail from '../screens/CarDetail';
 import UpdateAccountScreen from '../screens/UpdateAccountScreen';
+import PostImageCar from '../screens/PostImageCar';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -40,7 +41,8 @@ HomeStack.path = '';
 
 const PostStack = createStackNavigator(
   {
-    Post: PostScreen,
+    Post:PostImageCar,
+    PostScreen: PostScreen,
   },
   config
 );
