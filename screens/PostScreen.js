@@ -38,6 +38,9 @@ export default class PostScreen extends Component{
     }
     this.retrieveData();
   }
+  componentDidMount(){
+    this.state.string = document.write("Chuỗi cần lấy là: " + string.slice(1, 4));
+  }
   retrieveData = async () => {
     try {
       const value = await AsyncStorage.getItem('@ID:key');
@@ -45,7 +48,7 @@ export default class PostScreen extends Component{
         // We have data!!
         this.setState({ID:value});
         console.log('HAHAHA');
-        console.log(document.write("Chuỗi cần lấy là: " + string.slice(1, 4)));
+        console.log(string);
       }
     } catch (error) {
       // Error retrieving data

@@ -13,6 +13,46 @@ import {
   KeyboardAvoidingView, } from 'react-native'
 
 export default class Register extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      name:"",
+      email:"",
+      password:""
+    }
+    this.retrieveData();
+  }
+  retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@name:key');
+      if (value !== null) {
+        // We have data!!
+        this.setState({name:value});
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  }; 
+  Nhap(){
+    fetch("https://huynguyen1401.000webhostapp.com/ThemTaiKhoan.php",{
+    "method":"POST",
+    headers:{
+      "Accept":"application/json",
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+      "USERID":this.state.name,
+      "EMAIL":this.state.email,
+      "PASSWORD":this.state.password,
+    })
+  })
+    .then((response)=>response.json())
+    .then((responseJson)=>{
+      alert(responseJson);
+    })
+    .catch(() => {
+    });
+}
 	render(){
 		return(
       <SafeAreaView style={styles.container}>
@@ -25,33 +65,44 @@ export default class Register extends Component{
             <Text style={styles.title}>Đăng ký</Text> 
           </View>
           <View style={styles.infoContainer}>
-            <TextInput style={styles.input} 
-            placeholder='Tên tài khoản'
+
+            <TextInput style={styles.input}
+            onChangeText={(name)=>this.setState({name})}
+            value={this.state.status}
             placeholderTextColor='white'
             keyboardType='email-address'
             returnKeyType='next'
             autoCorrect={false}
             onSubmitEditing={() => this.refs.txtPassword.focus()}
-            />
-            <TextInput style={styles.input} 
-            placeholder='Mật khẩu'
+            placeholder='Tên tài khoản'>
+            </TextInput>
+
+            <TextInput style={styles.input}
+            onChangeText={(email)=>this.setState({email})}
+            value={this.state.email}
             placeholderTextColor='white'
+            keyboardType='email-address'
             returnKeyType='next'
             autoCorrect={false}
-            secureTextEntry={true}
-            ref={'txtPassword'}
-            />
-            <TextInput style={styles.input} 
-            placeholder='Xác nhận mật khẩu'
+            onSubmitEditing={() => this.refs.txtPassword.focus()}
+            placeholder='Email'>
+            </TextInput>
+
+            <TextInput style={styles.input}
+            onChangeText={(password)=>this.setState({password})}
+            value={this.state.password}
             placeholderTextColor='white'
+            keyboardType='email-address'
             returnKeyType='go'
             autoCorrect={false}
             secureTextEntry={true}
             ref={'txtPassword'}
-            />
+            placeholder='Mật khẩu'>
+            </TextInput>
+            
             <TouchableOpacity 
               style={styles.buttonContainer}
-              onPress={() => this.props.navigation.navigate('SignIn')}>
+              onPress={() => this.Nhap()}>
               <Text style={styles.buttonText}>Đăng ký</Text>
             </TouchableOpacity>
             
