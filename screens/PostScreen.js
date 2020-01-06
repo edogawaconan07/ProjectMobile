@@ -66,7 +66,7 @@ export default class PostScreen extends Component{
       "MODEL":this.state.year,
       "PRICE":this.state.price,
       "USERID":this.state.ID,
-      "IMAGE":this.state.image.replace('file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAwesomeProject-a44156e4-56ab-41b3-a2e5-6d532cec7a1d/ImagePicker/', ''),
+      "IMAGE":this.state.image.replace('file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAwesomeProject-5889fe97-90c2-4dc2-94b5-d549b38a9829/ImagePicker/', ''),
     })
   })
     .then((response)=>response.json())
