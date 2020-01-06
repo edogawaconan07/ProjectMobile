@@ -26,7 +26,7 @@ export default class SettingScreen extends Component {
     this.state = {
       //Khai báo array rỗng là myData để chứa dữ liệu load về.
       myData: [],
-      ID:"huy",
+      ID:"",
     };
   }
 
