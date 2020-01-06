@@ -11,6 +11,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Constants from 'expo-constants';
 import {AsyncStorage} from 'react-native';
 
+
 export default class PostScreen extends Component{
   static navigationOptions = {
     title: 'Nhập thông tin',
@@ -37,7 +38,8 @@ export default class PostScreen extends Component{
     this.retrieveData();
   }
   componentDidMount = async () =>{
-    console.log(this.state.image.replace('file:///data/data/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAwesomeProject-a44156e4-56ab-41b3-a2e5-6d532cec7a1d/ImagePicker/', ''));
+    //console.log(this.state.image.replace('file:///data/data/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAwesomeProject-a44156e4-56ab-41b3-a2e5-6d532cec7a1d/ImagePicker/', ''));
+    console.log(this.state.image.slice(this.state.image.indexOf("ImagePicker/")).slice(12,this.state.image.slice(this.state.image.indexOf("ImagePicker/")).length));
   }
   retrieveData = async () => {
     try {
@@ -66,7 +68,8 @@ export default class PostScreen extends Component{
       "MODEL":this.state.year,
       "PRICE":this.state.price,
       "USERID":this.state.ID,
-      "IMAGE":this.state.image.replace('file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAwesomeProject-5889fe97-90c2-4dc2-94b5-d549b38a9829/ImagePicker/', ''),
+      //"IMAGE":this.state.image.replace('file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAwesomeProject-5889fe97-90c2-4dc2-94b5-d549b38a9829/ImagePicker/', ''),
+      "IMAGE":this.state.image.slice(this.state.image.indexOf("ImagePicker/")).slice(12,this.state.image.slice(this.state.image.indexOf("ImagePicker/")).length),
     })
   })
     .then((response)=>response.json())
