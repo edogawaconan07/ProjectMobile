@@ -70,7 +70,8 @@ export default class UpdateTaiKhoan extends Component{
         this.props.navigation.navigate('AccountScreen');
     }else{
       alert('Update thất bại');
-    }   
+    } 
+    alert('Đã update tài khoản');  
    })
     .catch(() => {
     });

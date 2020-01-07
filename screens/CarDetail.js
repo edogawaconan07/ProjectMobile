@@ -30,11 +30,11 @@ export default class CarDetail extends Component{
     constructor(props){
       super(props);
       this.state={
+        myData:[],
         myData_car: [],
         carid:this.props.navigation.state.params.id,
         ID:'',
       };
-      this.storeData();
     }
     storeData = async () => {
       try {
@@ -42,13 +42,36 @@ export default class CarDetail extends Component{
         if (value !== null) {
           // We have data!!
           this.setState({ID:value});
+          this.getdataUser();
         }
       } catch (error) {
         // Error retrieving data
       }
     };
     componentDidMount(){
+      this.storeData();
       this.getdata();
+    }
+
+    getdataUser(){
+      console.log(this.state.ID);
+      fetch("https://huynguyen1401.000webhostapp.com/getdata_user.php",{
+        "method":"POST",
+        headers:{
+          "Accept":"application/json",
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          "USERID":this.state.ID,
+        })
+      })
+      .then((response)=>response.json())
+      .then((responseJson)=>{
+        this.setState({
+          myData: responseJson,
+        });
+      })
+
     }
 
     getdata(){
@@ -69,6 +92,27 @@ export default class CarDetail extends Component{
         });
       })
     }
+
+    sendemail(){
+      fetch("https://huynguyen1401.000webhostapp.com/SendMail.php",{
+        "method":"POST",
+        headers:{
+          "Accept":"application/json",
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          "Name":this.state.myData['FULL_NAME'],
+          "Phone":this.state.myData['FIRST_PHONE'],
+          "FromEmail":this.state.myData['EMAIL'],
+          "AddressEmail":this.state.myData_car['EMAIL'],
+          "NameCar":this.state.myData_car['CAR_NAME'],
+          "Price":this.state.myData_car['PRICE'],
+          "Image":this.state.myData_car['DETAILED_DESCRIPTION'],
+        })
+      })
+      alert('Đã gửi mail đến chủ xe');     
+    }
+
     Data(){
         if (this.state.ID == this.state.myData_car['USERID']) {
           // We have data!!
@@ -217,7 +261,7 @@ export default class CarDetail extends Component{
         <Text style={styles.title}>Mô tả</Text>
         <TouchableOpacity 
               style={styles.buttonContainer}
-              onPress={() => this.props.navigation.navigate('SignIn')}>
+              onPress={() => this.sendemail()}>
               <Text style={styles.buttonText}>Đặt mua</Text>
         </TouchableOpacity>
 

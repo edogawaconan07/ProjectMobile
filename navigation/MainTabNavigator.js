@@ -87,31 +87,31 @@ AccountStack.navigationOptions = {
 
 AccountStack.path = '';
 
-const SettingsStack = createStackNavigator(
-  {
-    SettingsScreen: SettingsScreen,
-    CarDetailLike:CarDetailLike,
-  },
-  config
-);
+// const SettingsStack = createStackNavigator(
+//   {
+//     SettingsScreen: SettingsScreen,
+//     CarDetailLike:CarDetailLike,
+//   },
+//   config
+// );
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Yêu thích',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon 
-    focused={focused} 
-    name={'md-person'} 
-    />
-  ),
-};
+// SettingsStack.navigationOptions = {
+//   tabBarLabel: 'Yêu thích',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon 
+//     focused={focused} 
+//     name={'md-person'} 
+//     />
+//   ),
+// };
 
-SettingsStack.path = '';
+// SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   PostStack,
   AccountStack,
-  SettingsStack,
+  //SettingsStack,
 });
 
 tabNavigator.path = '';
